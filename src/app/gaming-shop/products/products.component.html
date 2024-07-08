@@ -1,0 +1,25 @@
+<div class="container mx-auto my-5">
+    <div class="grid h-8 grid-cols-12 gap-4">
+        <div class="relative col-span-8">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <img src="assets/images/search-svgrepo-com.svg" alt="" class="h-8 text-gray-500">
+            </span>
+            <input type="text" [(ngModel)]="search" (input)="searchJuego()" name="busqueda" id="busqueda" class="rounded-md pl-12 p-2 text-black focus:ring-4 focus:outline-none focus:ring-blue-700 focus:border-blue-700 w-full" placeholder="Buscar...">
+        </div>
+
+        <select name="filterCat" id="filterCat" [(ngModel)]="selectedCategory" (change)="filterCategory()" class="col-span-4 rounded-md p-2 text-black w-full">
+            <option value="0">Todas las Categorías</option>
+            <option style="color: black;" *ngFor="let categoria of categorias" [value]="categoria.categoriaId">{{categoria.nombre}}</option>
+        </select>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 py-8 justify-center text-white">
+        <div *ngFor="let videojuego of videojuegos" class="text-center">
+            <img [src]="getImageUrl(videojuego.imageUrl)" alt="{{videojuego.nombre}}" class="w-full p-2 rounded-lg shadow-sm shadow-slate-50 h-1/2">
+            <div class="mt-2 text-lg font-semibold">{{videojuego.nombre}}</div>
+            <div class="text-gray-500">{{videojuego.descripcion}}</div>
+            <div class="mt-1 text-blue-700">{{videojuego.precio | currency}}</div>
+        </div>
+    </div>
+
+</div>
